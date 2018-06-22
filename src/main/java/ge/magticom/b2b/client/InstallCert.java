@@ -61,7 +61,7 @@ public class InstallCert {
         char[] passphrase;
 
 
-            String jksPath="/home/zviad/Desktop/keys/playapp/playapp1.jks";
+            String jksPath="path/to/your/jks.jks";
             host = "b2b.magticom.ge";
             port = 443;
             String p =   "Defender1" ;

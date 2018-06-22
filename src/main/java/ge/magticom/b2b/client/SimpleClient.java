@@ -29,7 +29,7 @@ import java.util.List;
 public class SimpleClient {
 
     Logger logger=Logger.getLogger(SimpleClient.class);
-    String filePath = "/home/zviad/Desktop/keys/playapp/playapp1.jks";
+    String filePath = "/path/to/your/jks.jks";
     String urlString="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello";
     String urlStringGet="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello?name=pita";
     String keyPassword="Defender1";
