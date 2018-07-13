@@ -28,12 +28,12 @@ import java.util.List;
  */
 public class SimpleClient {
 
-    Logger logger=Logger.getLogger(SimpleClient.class);
-    String filePath = "/path/to/your/jks.jks";
-    String urlString="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello";
-    String urlStringGet="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello?name=pita";
-    String keyPassword="Defender1";
-    String requestParams="name=pit333a";
+    private Logger logger=Logger.getLogger(SimpleClient.class);
+    private String filePath = "/path/to/your/jks.jks";
+    private String urlString="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello";
+    private String urlStringGet="https://b2b.magticom.ge/b2b-package-service/rest/simple/hello?name=pita";
+    private String keyPassword="yourKeyPass";
+    private String requestParams="name=pit333a";
 
 
 
@@ -79,7 +79,7 @@ public class SimpleClient {
 
 
 
-    public   HttpClient getHttpClient() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableKeyException, KeyManagementException {
+    private HttpClient getHttpClient() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableKeyException, KeyManagementException {
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
         KeyStore keyStore = KeyStore.getInstance("JKS");
         InputStream keyInput = new FileInputStream(filePath);
@@ -103,7 +103,7 @@ public class SimpleClient {
     }
 
 
-    public void testGetRequest() throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    private void testGetRequest() throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         HttpClient  httpClient=getHttpClient();
         HttpGet httpGet=new HttpGet(urlStringGet);
         HttpResponse response = httpClient.execute(httpGet);
@@ -112,7 +112,7 @@ public class SimpleClient {
         BufferedReader rd = new BufferedReader(
                 new InputStreamReader(response.getEntity().getContent()));
         StringBuffer result = new StringBuffer();
-        String line = "";
+        String line;
         while ((line = rd.readLine()) != null) {
             result.append(line);
         }
@@ -120,7 +120,7 @@ public class SimpleClient {
     }
 
 
-    public void postMethodTest() throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    private void postMethodTest() throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         HttpClient httpClient=getHttpClient();
         HttpPost httpPost=new HttpPost(urlString);
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -132,11 +132,11 @@ public class SimpleClient {
         BufferedReader rd = new BufferedReader(
                 new InputStreamReader(response.getEntity().getContent()));
         StringBuffer result = new StringBuffer();
-        String line = "";
+        String line;
         while ((line = rd.readLine()) != null) {
             result.append(line);
         }
-        System.out.printf(result.toString());
+        logger.info(result.toString());
     }
 
 
