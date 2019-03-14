@@ -26,3 +26,9 @@ genarate *.p12
 
 generate *.jks
 ** :~$> keytool -importkeystore -srckeystore playapp.p12 -srcstoretype pkcs12  -destkeystore playapp1.jks -deststoretype jks -deststorepass yourPassword**
+
+alternativly you can set .p12 in jvm system properties
+
+      System.setProperty( "sun.security.ssl.allowUnsafeRenegotiation", "true" );
+      System.setProperty("javax.net.ssl.keyStore",pathToYourP12);
+      System.setProperty("javax.net.ssl.keyStorePassword",yourP12Password);
