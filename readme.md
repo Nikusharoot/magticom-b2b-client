@@ -1,8 +1,8 @@
 ჯავა კლინტისთვის საჭიროა keystore. რომლშიც უნდა განთავსდეს, კლიენტის სერთიფიკატი, კლიენტის private key, და სერვერის სერთიფიკატი.
 მაგალითად ავიღოთ Let's Encript ის მიერ ხელმოწერილი სერთიფიკატი, 
-CSR რექვესტის დადასტურების შემდეგ ვიღებთ ფაილს  cert.pem da privkey.pem,
+CSR რექვესტის დადასტურების შემდეგ ვიღებთ ფაილს   fullchain.pem და privkey.pem,
 
-** :~$> openssl pkcs12 -export -out playapp.p12 -inkey privkey.pem -in  cert.pem**
+** :~$> openssl pkcs12 -export -out playapp.p12 -inkey privkey.pem -in  fullchain.pem**
 
 მიღებული .p12 შეიძლება დაემატოს ბრაუზერს საკუთარ სერთიფიკატებში, chremes შემთხვევაში 
 ვხნით, Settings -> Manage certificates და YOUR CERTIFICATES ჩანართში import ღილაკის მეშვეობით ვტვირთავთ მიღებულ .p12 ფაილს. 
@@ -21,14 +21,10 @@ CSR რექვესტის დადასტურების შემ�
 
 genarate *.p12 
 
-** :~$> openssl pkcs12 -export -out playapp.p12 -inkey privkey.pem -in  cert.pem**
+** :~$> openssl pkcs12 -export -out playapp.p12 -inkey privkey.pem -in  fullchain.pem**
 
 
 generate *.jks
 ** :~$> keytool -importkeystore -srckeystore playapp.p12 -srcstoretype pkcs12  -destkeystore playapp1.jks -deststoretype jks -deststorepass yourPassword**
 
-alternativly you can set .p12 in jvm system properties
 
-      System.setProperty( "sun.security.ssl.allowUnsafeRenegotiation", "true" );
-      System.setProperty("javax.net.ssl.keyStore",pathToYourP12);
-      System.setProperty("javax.net.ssl.keyStorePassword",yourP12Password);
