@@ -18,13 +18,19 @@ CSR რექვესტის დადასტურების შემ�
 ამის შემდეგ SimpleClient   class-ის გაშვებით შეგვიძლია დავრწმუნდეთ რომ ჯავა კლიენტი გაზსნის არხს
 
 
+for magticom b2b client you need certificate signed by some well known certificate authority,
+here is Letsencript Example,
+
+first you need to generate *.p12 file. for that you need fullchain.pem and privkey.pem 
 
 genarate *.p12 
-
 ** :~$> openssl pkcs12 -export -out playapp.p12 -inkey privkey.pem -in  fullchain.pem**
 
+after you need to generate *.jks
 
 generate *.jks
-** :~$> keytool -importkeystore -srckeystore playapp.p12 -srcstoretype pkcs12  -destkeystore playapp1.jks -deststoretype jks -deststorepass yourPassword**
+** :~$> keytool -importkeystore -srckeystore playapp.p12 -srcstoretype pkcs12  -destkeystore playapp.jks -deststoretype jks -deststorepass yourPassword**
+
+then you need to add b2b.magticom.ge server certificate in your *.jks for that porpose you can use InstallCert class
 
 
